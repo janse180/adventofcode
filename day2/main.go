@@ -28,10 +28,10 @@ func main() {
 	}
 
 	result := checksum(input)
-	// resultPart2 := calibratePart2(0, input)
-	//
+	resultPart2 := boxIDs(input)
+
 	fmt.Printf("Result of checksum %d\n", result)
-	// fmt.Printf("Result of calibration for part 2: %d\n", resultPart2)
+	fmt.Printf("Result of boxIDs for part 2: %s\n", resultPart2)
 }
 
 func checksum(input []string) int {
@@ -67,4 +67,47 @@ func charCounts(input string) map[int]string {
 	}
 
 	return resultNoDuplicates
+}
+
+func boxIDs(input []string) string {
+	for i, id := range input {
+		for _, id2 := range input[i+1:] {
+			if closeString(id, id2) {
+				fmt.Printf("String %s and %s are close\n", id, id2)
+				return removeDifferingChar(id, id2)
+			}
+		}
+	}
+
+	return ""
+}
+
+func removeDifferingChar(s1, s2 string) string {
+	var differingCharIndex int
+	for i, c := range s1 {
+		if string(c) != string(s2[i]) {
+			differingCharIndex = i
+			break
+		}
+	}
+
+	return s1[:differingCharIndex] + s1[differingCharIndex+1:]
+}
+
+// Returns true if there is only a one charecter difference between the strings
+func closeString(s1, s2 string) bool {
+	notEqualCount := 0
+	for i, c := range s1 {
+		if notEqualCount > 1 {
+			return false
+		}
+		if string(c) != string(s2[i]) {
+			notEqualCount++
+		}
+	}
+
+	if notEqualCount == 1 {
+		return true
+	}
+	return false
 }
