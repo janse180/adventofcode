@@ -32,7 +32,7 @@ func TestParseClaim(t *testing.T) {
 
 		result, _ := parseClaim(test.input)
 		if result != test.expectedClaim {
-			t.Fatalf("Checksum returned wrong result, expecting %v got %v", test.expectedClaim, result)
+			t.Fatalf("parseClaim returned wrong result, expecting %v got %v", test.expectedClaim, result)
 		}
 	}
 
@@ -81,7 +81,7 @@ func TestCalcOverlapArea(t *testing.T) {
 
 		result := g.calcOverlapArea()
 		if result != test.expectedArea {
-			t.Fatalf("Checksum returned wrong result, expecting %d got %d", test.expectedArea, result)
+			t.Fatalf("calcOverlapArea returned wrong result, expecting %d got %d", test.expectedArea, result)
 		}
 	}
 }
@@ -101,7 +101,7 @@ func TestGetNonOverlapId(t *testing.T) {
 
 		result := test.input.getNonOverlapedID()
 		if result != test.expectedID {
-			t.Fatalf("Checksum returned wrong result, expecting %d got %d", test.expectedID, result)
+			t.Fatalf("getNonOverlapedID returned wrong result, expecting %d got %d", test.expectedID, result)
 		}
 	}
 }
