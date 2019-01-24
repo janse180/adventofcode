@@ -73,12 +73,10 @@ func boxIDs(input []string) string {
 	for i, id := range input {
 		for _, id2 := range input[i+1:] {
 			if closeString(id, id2) {
-				fmt.Printf("String %s and %s are close\n", id, id2)
 				return removeDifferingChar(id, id2)
 			}
 		}
 	}
-
 	return ""
 }
 
